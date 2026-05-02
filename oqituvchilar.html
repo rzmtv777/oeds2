@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>O'qituvchilar | 9A</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <style>
+    :root {
+      --bg-primary: #0a0a0f; --bg-secondary: #12121a; --bg-glass: rgba(18, 18, 26, 0.7);
+      --text-primary: #e0e0e0; --text-secondary: #888899; --border: rgba(255, 255, 255, 0.08);
+      --accent: #2d3561;
+    }
+    [data-theme="red"] {
+      --bg-primary: #0a0000; --bg-secondary: #1a0505; --bg-glass: rgba(26, 5, 5, 0.7);
+      --text-primary: #ffffff; --text-secondary: #aaaaaa; --border: rgba(255, 255, 255, 0.1);
+      --accent: #ff0033;
+    }
+    [data-theme="orange"] {
+      --bg-primary: #0a0500; --bg-secondary: #1a0f05; --bg-glass: rgba(26, 15, 5, 0.7);
+      --text-primary: #ffffff; --text-secondary: #bbbbbb; --border: rgba(255, 255, 255, 0.08);
+      --accent: #ff6600;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: var(--bg-primary); color: var(--text-primary); font-family: 'Inter', sans-serif; min-height: 100vh; }
+    .ambient-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; background: var(--bg-primary); }
+    .ambient-glow { position: absolute; border-radius: 50%; filter: blur(120px); opacity: 0.15; animation: ambientMove 25s infinite ease-in-out; background: var(--accent); }
+    .glow-1 { width: 500px; height: 500px; top: -150px; left: -150px; }
+    @keyframes ambientMove { 0%, 100% { transform: translate(0, 0) scale(1); } 50% { transform: translate(30px, -30px) scale(1.1); } }
+    .container { max-width: 1000px; margin: 0 auto; padding: 80px 40px; }
+    .glass-card { background: var(--bg-glass); backdrop-filter: blur(30px); border: 1px solid var(--border); border-radius: 24px; padding: 60px; box-shadow: 0 32px 64px rgba(0, 0, 0, 0.4); }
+    .page-header { text-align: center; margin-bottom: 50px; }
+    .badge { display: inline-flex; align-items: center; gap: 8px; padding: 6px 16px; background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border); border-radius: 20px; font-size: 12px; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 24px; }
+    .badge::before { content: ''; width: 6px; height: 6px; background: var(--accent); border-radius: 50%; }
+    h1 { font-size: 42px; font-weight: 700; margin-bottom: 16px; }
+    .teacher-grid { display: grid; gap: 24px; }
+    .teacher-card { background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border); border-radius: 20px; padding: 30px; transition: all 0.3s; }
+    .teacher-card:hover { background: rgba(255, 255, 255, 0.04); border-color: var(--accent); transform: translateX(5px); }
+    .teacher-role { font-size: 12px; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 8px; }
+    .teacher-name { font-size: 24px; font-weight: 700; margin-bottom: 20px; }
+    .teacher-contact { display: flex; flex-direction: column; gap: 12px; }
+    .contact-item { display: flex; align-items: center; gap: 12px; font-size: 14px; color: var(--text-secondary); }
+    .contact-item i { width: 20px; text-align: center; font-size: 16px; color: var(--accent); }
+    .contact-item a { color: var(--text-primary); text-decoration: none; border-bottom: 1px solid var(--border); }
+    .triangular-btn { display: inline-flex; align-items: center; gap: 12px; padding: 16px 32px; background: var(--bg-secondary); border: 1px solid var(--border); color: var(--text-primary); text-decoration: none; font-size: 14px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%); transition: all 0.3s; }
+    .triangular-btn:hover { background: var(--accent); border-color: var(--accent); transform: translateY(-2px); }
+    .back-btn { text-align: center; margin-top: 40px; }
+  </style>
+</head>
+<body>
+  <div class="ambient-bg"><div class="ambient-glow glow-1"></div></div>
+  <div class="container">
+    <div class="glass-card">
+      <div class="page-header">
+        <div class="badge">Teachers</div>
+        <h1>O'qituvchilar</h1>
+      </div>
+      <div class="teacher-grid">
+        <div class="teacher-card">
+          <div class="teacher-role">1-5 Sinf Rahbarlari</div>
+          <div class="teacher-name">Sinf Rahbarlari</div>
+          <div class="teacher-contact">
+            <div class="contact-item"><i class="fas fa-star"></i> Boshlang'ich sinf ustozlari</div>
+          </div>
+        </div>
+        <div class="teacher-card">
+          <div class="teacher-role">O'qituvchi</div>
+          <div class="teacher-name">Norjon Ustoz</div>
+          <div class="teacher-contact">
+            <div class="contact-item"><i class="fas fa-chalkboard-teacher"></i> Katta o'qituvchi</div>
+          </div>
+        </div>
+        <div class="teacher-card">
+          <div class="teacher-role">5-9 Sinf Rahbarlari</div>
+          <div class="teacher-name">Sinf Rahbarlari</div>
+          <div class="teacher-contact">
+            <div class="contact-item"><i class="fas fa-star"></i> O'rta va yuqori sinf ustozlari</div>
+          </div>
+        </div>
+        <div class="teacher-card">
+          <div class="teacher-role">Fizika O'qituvchisi</div>
+          <div class="teacher-name">Rahmatullayeva Asaloy</div>
+          <div class="teacher-contact">
+            <div class="contact-item"><i class="fab fa-telegram-plane"></i> <a href="https://t.me/rzmtv_7z7">@asaloy_teacher</a></div>
+            <div class="contact-item"><i class="fas fa-phone-alt"></i> +998 99 123 45 67</div>
+          </div>
+        </div>
+      </div>
+      <div class="back-btn">
+        <a href="index.html" class="triangular-btn"><i class="fas fa-arrow-left"></i> Orqaga</a>
+      </div>
+    </div>
+  </div>
+  <script>
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme && savedTheme !== 'default') document.documentElement.setAttribute('data-theme', savedTheme);
+  </script>
+</body>
+</html>
