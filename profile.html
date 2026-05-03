@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="black-red">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Galerey — Profile</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/themes.css">
+  <style>
+    .profile-header { text-align: center; padding: 24px 16px; }
+    .profile-avatar-wrap { position: relative; display: inline-block; margin-bottom: 16px; }
+    .profile-avatar-wrap .avatar { border: 3px solid var(--primary); }
+    .profile-avatar-wrap .edit-avatar { position: absolute; bottom: 0; right: 0; width: 32px; height: 32px; border-radius: 50%; background: var(--gradient-primary); border: 2px solid var(--bg); display: flex; align-items: center; justify-content: center; font-size: 12px; color: #fff; cursor: pointer; }
+    .profile-name { font-family: var(--font-heading); font-size: 22px; font-weight: 700; }
+    .profile-username { font-size: 14px; color: var(--text-muted); margin-top: 2px; }
+    .profile-bio { font-size: 14px; color: var(--text-secondary); margin-top: 8px; max-width: 300px; margin-left: auto; margin-right: auto; line-height: 1.5; }
+    .profile-role-badge { display: inline-block; padding: 4px 14px; background: var(--gradient-primary); border-radius: 20px; font-size: 12px; font-weight: 600; margin-top: 10px; }
+    .profile-stats { display: flex; justify-content: center; gap: 32px; margin-top: 20px; }
+    .profile-stat { text-align: center; }
+    .profile-stat .num { font-size: 20px; font-weight: 800; color: var(--primary); }
+    .profile-stat .label { font-size: 12px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+    .profile-actions { display: flex; gap: 10px; justify-content: center; margin-top: 20px; }
+    .profile-tabs { display: flex; border-bottom: 1px solid rgba(255,255,255,0.06); margin-top: 20px; }
+    .profile-tab { flex: 1; padding: 12px; text-align: center; font-size: 18px; color: var(--text-muted); cursor: pointer; transition: var(--transition); border-bottom: 2px solid transparent; }
+    .profile-tab.active { color: var(--primary); border-bottom-color: var(--primary); }
+    .profile-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; }
+    .profile-grid-item { aspect-ratio: 1; overflow: hidden; cursor: pointer; position: relative; }
+    .profile-grid-item img { width: 100%; height: 100%; object-fit: cover; transition: var(--transition); }
+    .profile-grid-item:hover img { transform: scale(1.05); }
+    .profile-grid-item .overlay { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center; gap: 16px; opacity: 0; transition: var(--transition); }
+    .profile-grid-item:hover .overlay { opacity: 1; }
+    .profile-grid-item .overlay span { display: flex; align-items: center; gap: 4px; font-size: 13px; font-weight: 700; }
+  </style>
+</head>
+<body>
+  <div class="bg-blobs"><div class="blob blob-1"></div><div class="blob blob-2"></div></div>
+
+  <div class="top-nav">
+    <div class="nav-brand"><div class="nav-brand-icon">🎓</div><span data-i18n="app_name">My Galerey</span></div>
+    <div class="nav-actions">
+      <button class="nav-btn" onclick="location.href='settings.html'"><i class="fas fa-cog"></i></button>
+      <button class="nav-btn" onclick="location.href='home.html'"><i class="fas fa-home"></i></button>
+    </div>
+  </div>
+
+  <div class="main-content">
+    <div class="page-container" style="max-width:600px;margin:0 auto">
+      <div class="profile-header">
+        <div class="profile-avatar-wrap">
+          <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=200&h=200&fit=crop" class="avatar avatar-xxl" id="profileAvatar" alt="">
+          <div class="edit-avatar" onclick="location.href='edit-profile.html'"><i class="fas fa-camera"></i></div>
+        </div>
+        <div class="profile-name" id="profileName">John Doe</div>
+        <div class="profile-username" id="profileUsername">@johndoe</div>
+        <div class="profile-bio" id="profileBio">School parent | Love photography 📸</div>
+        <div class="profile-role-badge" id="profileRole">Parent</div>
+
+        <div class="profile-stats">
+          <div class="profile-stat"><div class="num" id="statPosts">0</div><div class="label" data-i18n="posts">Posts</div></div>
+          <div class="profile-stat"><div class="num" id="statFollowers">0</div><div class="label" data-i18n="followers">Followers</div></div>
+          <div class="profile-stat"><div class="num" id="statFollowing">0</div><div class="label" data-i18n="following">Following</div></div>
+        </div>
+
+        <div class="profile-actions">
+          <button class="btn" onclick="location.href='edit-profile.html'"><i class="fas fa-edit"></i> <span data-i18n="edit_profile">Edit Profile</span></button>
+          <button class="btn btn-secondary" onclick="location.href='saved.html'"><i class="fas fa-bookmark"></i></button>
+        </div>
+      </div>
+
+      <div class="profile-tabs">
+        <div class="profile-tab active" onclick="switchTab(this, 'grid')"><i class="fas fa-th"></i></div>
+        <div class="profile-tab" onclick="switchTab(this, 'reels')"><i class="fas fa-play-circle"></i></div>
+        <div class="profile-tab" onclick="switchTab(this, 'saved')"><i class="fas fa-bookmark"></i></div>
+      </div>
+
+      <div class="profile-grid" id="profileGrid">
+        <div class="profile-grid-item">
+          <img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=300&h=300&fit=crop" alt="">
+          <div class="overlay"><span><i class="fas fa-heart"></i> 128</span><span><i class="fas fa-comment"></i> 12</span></div>
+        </div>
+        <div class="profile-grid-item">
+          <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=300&h=300&fit=crop" alt="">
+          <div class="overlay"><span><i class="fas fa-heart"></i> 89</span><span><i class="fas fa-comment"></i> 5</span></div>
+        </div>
+        <div class="profile-grid-item">
+          <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=300&h=300&fit=crop" alt="">
+          <div class="overlay"><span><i class="fas fa-heart"></i> 256</span><span><i class="fas fa-comment"></i> 34</span></div>
+        </div>
+        <div class="profile-grid-item">
+          <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?w=300&h=300&fit=crop" alt="">
+          <div class="overlay"><span><i class="fas fa-heart"></i> 67</span><span><i class="fas fa-comment"></i> 8</span></div>
+        </div>
+        <div class="profile-grid-item">
+          <img src="https://images.unsplash.com/photo-1571260899304-425eee4c7efc?w=300&h=300&fit=crop" alt="">
+          <div class="overlay"><span><i class="fas fa-heart"></i> 145</span><span><i class="fas fa-comment"></i> 21</span></div>
+        </div>
+        <div class="profile-grid-item">
+          <img src="https://images.unsplash.com/photo-1588072432836-e10032774350?w=300&h=300&fit=crop" alt="">
+          <div class="overlay"><span><i class="fas fa-heart"></i> 203</span><span><i class="fas fa-comment"></i> 28</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom-nav">
+    <button class="bottom-nav-item" onclick="location.href='home.html'"><i class="fas fa-home"></i><span data-i18n="home">Home</span></button>
+    <button class="bottom-nav-item" onclick="location.href='explore.html'"><i class="fas fa-compass"></i><span data-i18n="explore">Explore</span></button>
+    <button class="bottom-nav-item" onclick="location.href='reels.html'"><i class="fas fa-play-circle"></i><span data-i18n="reels">Reels</span></button>
+    <button class="bottom-nav-item" onclick="location.href='chat.html'"><i class="fas fa-paper-plane"></i><span data-i18n="chat">Chat</span></button>
+    <button class="bottom-nav-item active" onclick="location.href='profile.html'"><i class="fas fa-user"></i><span data-i18n="profile">Profile</span></button>
+  </div>
+
+  <script src="assets/js/i18n.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script>
+    MG_App.requireAuth('login.html');
+    const user = MG_App.currentUser;
+    if (user) {
+      document.getElementById('profileName').textContent = user.name;
+      document.getElementById('profileUsername').textContent = '@' + user.username;
+      document.getElementById('profileRole').textContent = user.role === 'parent' ? MG_t('parent') : MG_t('classmate');
+      if (user.avatar && !user.avatar.includes('unsplash.com/photo-1535713875002')) {
+        document.getElementById('profileAvatar').src = user.avatar;
+      }
+      if (user.bio) document.getElementById('profileBio').textContent = user.bio;
+      document.getElementById('statPosts').textContent = user.posts || 0;
+      document.getElementById('statFollowers').textContent = user.followers || 0;
+      document.getElementById('statFollowing').textContent = user.following || 0;
+    }
+
+    function switchTab(el, tab) {
+      document.querySelectorAll('.profile-tab').forEach(t => t.classList.remove('active'));
+      el.classList.add('active');
+    }
+  </script>
+</body>
+</html>

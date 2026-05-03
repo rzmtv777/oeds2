@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="black-red">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Galerey — Chats</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/themes.css">
+  <style>
+    .chat-list-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 16px;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: var(--transition);
+      margin-bottom: 4px;
+    }
+    .chat-list-item:hover { background: rgba(255,255,255,0.06); }
+    .chat-list-item .avatar { border: 2px solid var(--primary); }
+    .chat-list-info { flex: 1; min-width: 0; }
+    .chat-list-info .name { font-size: 15px; font-weight: 600; }
+    .chat-list-info .last-msg { font-size: 13px; color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .chat-list-meta { text-align: right; flex-shrink: 0; }
+    .chat-list-meta .time { font-size: 11px; color: var(--text-muted); }
+    .chat-list-meta .unread { display: inline-flex; align-items: center; justify-content: center; min-width: 20px; height: 20px; padding: 0 6px; font-size: 11px; font-weight: 700; color: #fff; background: var(--primary); border-radius: 10px; margin-top: 4px; }
+    .chat-group-badge { display: inline-block; padding: 2px 8px; font-size: 10px; font-weight: 600; background: var(--gradient-primary); border-radius: 8px; margin-left: 8px; }
+  </style>
+</head>
+<body>
+  <div class="bg-blobs"><div class="blob blob-1"></div><div class="blob blob-2"></div></div>
+
+  <div class="top-nav">
+    <div class="nav-brand"><div class="nav-brand-icon">🎓</div><span data-i18n="app_name">My Galerey</span></div>
+    <div class="nav-actions">
+      <button class="nav-btn" onclick="location.href='home.html'"><i class="fas fa-home"></i></button>
+      <button class="nav-btn"><i class="fas fa-edit"></i></button>
+    </div>
+  </div>
+
+  <div class="main-content">
+    <div class="page-container" style="max-width:600px;margin:0 auto">
+      <h1 style="font-family:var(--font-heading);font-size:24px;font-weight:700;margin-bottom:20px" data-i18n="chats">Chats</h1>
+
+      <!-- Group Chats -->
+      <div class="section-header">
+        <h2 style="font-size:14px;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px" data-i18n="groups">Groups</h2>
+      </div>
+
+      <div class="chat-list-item" onclick="location.href='parents-chat.html'">
+        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=100&h=100&fit=crop" class="avatar avatar-lg" alt="">
+        <div class="chat-list-info">
+          <div class="name">👨‍👩‍👧 <span data-i18n="parents_chat">Parents Chat</span></div>
+          <div class="last-msg" data-i18n="no_messages">No messages yet</div>
+        </div>
+        <div class="chat-list-meta">
+          <div class="time"></div>
+        </div>
+      </div>
+
+      <div class="chat-list-item" onclick="location.href='classmates-chat.html'">
+        <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=100&h=100&fit=crop" class="avatar avatar-lg" alt="">
+        <div class="chat-list-info">
+          <div class="name">🎒 <span data-i18n="classmates_chat">Classmates Chat</span></div>
+          <div class="last-msg" data-i18n="no_messages">No messages yet</div>
+        </div>
+        <div class="chat-list-meta">
+          <div class="time"></div>
+        </div>
+      </div>
+
+      <div style="height:1px;background:rgba(255,255,255,0.06);margin:16px 0"></div>
+
+      <!-- Direct Messages -->
+      <div class="section-header">
+        <h2 style="font-size:14px;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px">Direct Messages</h2>
+      </div>
+
+      <div class="chat-list-item" onclick="location.href='parents-chat.html'">
+        <div style="position:relative">
+          <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop" class="avatar avatar-lg" alt="">
+          <span style="position:absolute;bottom:0;right:0;width:14px;height:14px;background:var(--online-color);border:2px solid var(--bg);border-radius:50%"></span>
+        </div>
+        <div class="chat-list-info">
+          <div class="name">Sara Karimova</div>
+          <div class="last-msg">Start a conversation</div>
+        </div>
+      </div>
+
+      <div class="chat-list-item" onclick="location.href='classmates-chat.html'">
+        <div style="position:relative">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop" class="avatar avatar-lg" alt="">
+          <span style="position:absolute;bottom:0;right:0;width:14px;height:14px;background:var(--online-color);border:2px solid var(--bg);border-radius:50%"></span>
+        </div>
+        <div class="chat-list-info">
+          <div class="name">Ahmet Yilmaz</div>
+          <div class="last-msg">Start a conversation</div>
+        </div>
+      </div>
+
+      <div class="chat-list-item" onclick="location.href='parents-chat.html'">
+        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop" class="avatar avatar-lg" alt="">
+        <div class="chat-list-info">
+          <div class="name">Maria Petrova</div>
+          <div class="last-msg">Start a conversation</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom-nav">
+    <button class="bottom-nav-item" onclick="location.href='home.html'"><i class="fas fa-home"></i><span data-i18n="home">Home</span></button>
+    <button class="bottom-nav-item" onclick="location.href='explore.html'"><i class="fas fa-compass"></i><span data-i18n="explore">Explore</span></button>
+    <button class="bottom-nav-item" onclick="location.href='reels.html'"><i class="fas fa-play-circle"></i><span data-i18n="reels">Reels</span></button>
+    <button class="bottom-nav-item active" onclick="location.href='chat.html'"><i class="fas fa-paper-plane"></i><span data-i18n="chat">Chat</span></button>
+    <button class="bottom-nav-item" onclick="location.href='profile.html'"><i class="fas fa-user"></i><span data-i18n="profile">Profile</span></button>
+  </div>
+
+  <script src="assets/js/i18n.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script>MG_App.requireAuth('login.html');</script>
+</body>
+</html>

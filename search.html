@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="black-red">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Galerey — Search</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/themes.css">
+  <style>
+    .search-bar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius);
+      margin-bottom: 20px;
+    }
+    .search-bar i { color: var(--text-muted); font-size: 18px; }
+    .search-bar input {
+      flex: 1;
+      background: none;
+      border: none;
+      color: var(--text);
+      font-size: 16px;
+      outline: none;
+    }
+    .search-bar input::placeholder { color: var(--text-muted); }
+    .search-bar .clear-btn { background: none; border: none; color: var(--text-muted); font-size: 16px; cursor: pointer; display: none; }
+    .search-result {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .search-result:hover { background: rgba(255,255,255,0.04); padding-left: 8px; padding-right: 8px; margin: 0 -8px; border-radius: 12px; }
+    .search-result .avatar { border: 2px solid var(--primary); }
+    .search-result-info { flex: 1; }
+    .search-result-info .name { font-size: 14px; font-weight: 600; }
+    .search-result-info .username { font-size: 12px; color: var(--text-muted); }
+    .search-result-info .role-badge { display: inline-block; padding: 2px 8px; font-size: 10px; font-weight: 600; background: var(--gradient-primary); border-radius: 10px; margin-top: 4px; }
+    .recent-searches { margin-bottom: 24px; }
+    .recent-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+    .recent-header h3 { font-size: 16px; font-weight: 700; }
+    .recent-header .clear-all { color: var(--primary); font-size: 13px; font-weight: 600; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <div class="bg-blobs"><div class="blob blob-1"></div><div class="blob blob-2"></div></div>
+
+  <div class="top-nav">
+    <div class="nav-brand"><div class="nav-brand-icon">🎓</div><span data-i18n="app_name">My Galerey</span></div>
+    <div class="nav-actions">
+      <button class="nav-btn" onclick="location.href='home.html'"><i class="fas fa-home"></i></button>
+    </div>
+  </div>
+
+  <div class="main-content">
+    <div class="page-container" style="max-width:600px;margin:0 auto">
+      <div class="search-bar">
+        <i class="fas fa-search"></i>
+        <input type="text" id="searchInput" data-i18n-placeholder="search_users" placeholder="Search users..." oninput="handleSearch(this.value)">
+        <button class="clear-btn" id="clearSearch" onclick="clearSearch()"><i class="fas fa-times"></i></button>
+      </div>
+
+      <div id="recentSearches" class="recent-searches">
+        <div class="recent-header">
+          <h3 data-i18n="recent">Recent</h3>
+          <span class="clear-all" data-i18n="delete">Clear All</span>
+        </div>
+        <div class="search-result" onclick="location.href='user-profile.html'">
+          <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop" class="avatar avatar-md" alt="">
+          <div class="search-result-info">
+            <div class="name">Sara Karimova</div>
+            <div class="username">@sara_karimova · Parent</div>
+          </div>
+        </div>
+        <div class="search-result" onclick="location.href='user-profile.html'">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop" class="avatar avatar-md" alt="">
+          <div class="search-result-info">
+            <div class="name">Ahmet Yilmaz</div>
+            <div class="username">@ahmet_yilmaz · Classmate</div>
+          </div>
+        </div>
+      </div>
+
+      <div id="searchResults" style="display:none"></div>
+    </div>
+  </div>
+
+  <div class="bottom-nav">
+    <button class="bottom-nav-item" onclick="location.href='home.html'"><i class="fas fa-home"></i><span data-i18n="home">Home</span></button>
+    <button class="bottom-nav-item" onclick="location.href='explore.html'"><i class="fas fa-compass"></i><span data-i18n="explore">Explore</span></button>
+    <button class="bottom-nav-item" onclick="location.href='reels.html'"><i class="fas fa-play-circle"></i><span data-i18n="reels">Reels</span></button>
+    <button class="bottom-nav-item" onclick="location.href='chat.html'"><i class="fas fa-paper-plane"></i><span data-i18n="chat">Chat</span></button>
+    <button class="bottom-nav-item" onclick="location.href='profile.html'"><i class="fas fa-user"></i><span data-i18n="profile">Profile</span></button>
+  </div>
+
+  <script src="assets/js/i18n.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script>
+    MG_App.requireAuth('login.html');
+
+    const users = [
+      { name: 'Sara Karimova', username: 'sara_karimova', role: 'Parent', avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop' },
+      { name: 'Ahmet Yilmaz', username: 'ahmet_yilmaz', role: 'Classmate', avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop' },
+      { name: 'Maria Petrova', username: 'maria_petrova', role: 'Parent', avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop' },
+      { name: 'David Chen', username: 'david_chen', role: 'Classmate', avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&h=80&fit=crop' },
+      { name: 'Lina Park', username: 'lina_park', role: 'Parent', avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=80&h=80&fit=crop' },
+      { name: 'Ali Hasanov', username: 'ali_hasanov', role: 'Classmate', avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&h=80&fit=crop' },
+      { name: 'Emma Wilson', username: 'emma_wilson', role: 'Classmate', avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=80&h=80&fit=crop' },
+      { name: 'James Brown', username: 'james_brown', role: 'Parent', avatar: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=80&h=80&fit=crop' }
+    ];
+
+    function handleSearch(query) {
+      const clearBtn = document.getElementById('clearSearch');
+      const recentDiv = document.getElementById('recentSearches');
+      const resultsDiv = document.getElementById('searchResults');
+
+      clearBtn.style.display = query ? 'block' : 'none';
+
+      if (!query.trim()) {
+        recentDiv.style.display = 'block';
+        resultsDiv.style.display = 'none';
+        return;
+      }
+
+      recentDiv.style.display = 'none';
+      resultsDiv.style.display = 'block';
+
+      const filtered = users.filter(u =>
+        u.name.toLowerCase().includes(query.toLowerCase()) ||
+        u.username.toLowerCase().includes(query.toLowerCase())
+      );
+
+      if (filtered.length === 0) {
+        resultsDiv.innerHTML = `<div class="empty-state"><i class="fas fa-search" style="font-size:48px"></i><h3 data-i18n="no_results">No results found</h3><p>Try a different search term</p></div>`;
+        return;
+      }
+
+      resultsDiv.innerHTML = filtered.map(u => `
+        <div class="search-result" onclick="location.href='user-profile.html'">
+          <img src="${u.avatar}" class="avatar avatar-md" alt="">
+          <div class="search-result-info">
+            <div class="name">${u.name}</div>
+            <div class="username">@${u.username}</div>
+            <span class="role-badge">${u.role}</span>
+          </div>
+          <i class="fas fa-chevron-right" style="color:var(--text-muted);font-size:14px"></i>
+        </div>
+      `).join('');
+    }
+
+    function clearSearch() {
+      document.getElementById('searchInput').value = '';
+      handleSearch('');
+    }
+  </script>
+</body>
+</html>

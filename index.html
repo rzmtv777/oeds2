@@ -1,356 +1,238 @@
 <!DOCTYPE html>
-<html lang="uz">
+<html lang="en" data-theme="black-red">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title data-i18n="site_title">9A Galereya</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-  <link href="https://cdn-uicons.flaticon.com/uicons-regular-straight/css/uicons-regular-straight.css" rel="stylesheet">
-  <link href="https://cdn-uicons.flaticon.com/uicons-bold-straight/css/uicons-bold-straight.css" rel="stylesheet">
-  <link href="https://cdn-uicons.flaticon.com/uicons-solid-straight/css/uicons-solid-straight.css" rel="stylesheet">
-  <link href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css" rel="stylesheet">
+  <title>My Galerey — School Social Platform</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/themes.css">
   <style>
-    :root {
-      --bg-primary: #0a0a0f;
-      --bg-secondary: #12121a;
-      --bg-glass: rgba(18, 18, 26, 0.7);
-      --text-primary: #e0e0e0;
-      --text-secondary: #888899;
-      --border: rgba(255, 255, 255, 0.08);
-      --accent: #2d3561;
-    }
-
-    [data-theme="red"] {
-      --bg-primary: #0a0000;
-      --bg-secondary: #1a0505;
-      --bg-glass: rgba(26, 5, 5, 0.7);
-      --text-primary: #ffffff;
-      --text-secondary: #aaaaaa;
-      --border: rgba(255, 255, 255, 0.1);
-      --accent: #ff0033;
-    }
-
-    [data-theme="orange"] {
-      --bg-primary: #0a0500;
-      --bg-secondary: #1a0f05;
-      --bg-glass: rgba(26, 15, 5, 0.7);
-      --text-primary: #ffffff;
-      --text-secondary: #bbbbbb;
-      --border: rgba(255, 255, 255, 0.08);
-      --accent: #ff6600;
-    }
-
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    body {
-      background: var(--bg-primary);
-      color: var(--text-primary);
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    .landing-hero {
       min-height: 100vh;
-      overflow-x: hidden;
-      transition: background 0.5s ease, color 0.5s ease;
-    }
-
-    .ambient-bg {
-      position: fixed; top: 0; left: 0;
-      width: 100%; height: 100%;
-      z-index: -2; background: var(--bg-primary); overflow: hidden;
-    }
-
-    .ambient-glow {
-      position: absolute; border-radius: 50%;
-      filter: blur(120px); opacity: 0.15;
-      animation: ambientMove 25s infinite ease-in-out;
-      background: var(--accent);
-    }
-
-    .glow-1 { width: 500px; height: 500px; top: -150px; left: -150px; }
-    .glow-2 { width: 400px; height: 400px; top: 40%; right: -100px; animation-delay: -8s; }
-    .glow-3 { width: 450px; height: 450px; bottom: -150px; left: 20%; animation-delay: -16s; }
-
-    @keyframes ambientMove {
-      0%, 100% { transform: translate(0, 0) scale(1); }
-      50% { transform: translate(30px, -30px) scale(1.1); }
-    }
-
-    .noise {
-      position: fixed; top: 0; left: 0;
-      width: 100%; height: 100%;
-      pointer-events: none; z-index: -1; opacity: 0.03;
-      background-image: url("image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-    }
-
-    .container {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 80px 40px;
-    }
-
-    .glass-card {
-      background: var(--bg-glass);
-      backdrop-filter: blur(30px);
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      padding: 80px 60px;
-      box-shadow: 0 32px 64px rgba(0, 0, 0, 0.4);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       text-align: center;
+      padding: 40px 20px;
+      position: relative;
+      z-index: 1;
     }
-
-    .logo {
-      font-size: 100px; font-weight: 900; letter-spacing: -4px;
-      background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      margin-bottom: 20px;
+    .landing-logo {
+      width: 100px; height: 100px;
+      background: var(--gradient-primary);
+      border-radius: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+      margin-bottom: 24px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.4), var(--shadow-glow);
+      animation: float 3s ease-in-out infinite;
     }
-
-    .tagline {
-      font-size: 18px; color: var(--text-secondary); font-weight: 400;
-      letter-spacing: 3px; text-transform: uppercase; margin-bottom: 60px;
+    .landing-title {
+      font-family: var(--font-heading);
+      font-size: clamp(36px, 8vw, 64px);
+      font-weight: 900;
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 16px;
+      line-height: 1.1;
     }
-
-    .nav-grid {
+    .landing-subtitle {
+      font-size: clamp(16px, 3vw, 22px);
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin-bottom: 40px;
+      line-height: 1.6;
+    }
+    .landing-buttons {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 60px;
+    }
+    .landing-features {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px; margin-bottom: 60px;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      max-width: 900px;
+      width: 100%;
+      margin-top: 40px;
     }
-
-    .triangular-btn {
-      display: flex; align-items: center; justify-content: center; gap: 12px;
-      padding: 20px 32px; background: var(--bg-secondary);
-      border: 1px solid var(--border); color: var(--text-primary);
-      text-decoration: none; font-size: 14px; font-weight: 600;
-      letter-spacing: 1px; text-transform: uppercase;
-      clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%);
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    .feature-card {
+      padding: 28px 24px;
+      text-align: center;
+      transition: var(--transition);
     }
-
-    .triangular-btn:hover {
-      background: var(--accent); border-color: var(--accent);
-      transform: translateY(-2px); box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+    .feature-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--primary);
     }
-
-    .triangular-btn .fi { font-size: 18px; }
-
-    .settings-trigger {
-      display: inline-flex; align-items: center; gap: 10px;
-      padding: 14px 28px; background: transparent;
-      border: 1px solid var(--border); color: var(--text-secondary);
-      border-radius: 50px; cursor: pointer; font-size: 14px; font-weight: 600;
-      transition: all 0.3s;
+    .feature-icon {
+      width: 56px; height: 56px;
+      background: var(--gradient-primary);
+      border-radius: 16px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      margin-bottom: 16px;
     }
-
-    .settings-trigger:hover {
-      border-color: var(--accent); color: var(--accent);
+    .feature-card h3 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 8px;
     }
-
-    .settings-panel {
-      position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.9);
-      background: var(--bg-secondary); border: 1px solid var(--border);
-      border-radius: 20px; padding: 30px; min-width: 350px;
-      z-index: 10000; box-shadow: 0 40px 80px rgba(0,0,0,0.8);
-      opacity: 0; visibility: hidden; transition: all 0.3s;
+    .feature-card p {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.5;
     }
-
-    .settings-panel.active {
-      transform: translate(-50%, -50%) scale(1); opacity: 1; visibility: visible;
+    .landing-stats {
+      display: flex;
+      gap: 40px;
+      margin-top: 60px;
+      flex-wrap: wrap;
+      justify-content: center;
     }
-
-    .settings-header {
-      display: flex; justify-content: space-between; align-items: center;
-      margin-bottom: 25px; padding-bottom: 15px; border-bottom: 1px solid var(--border);
+    .stat-item { text-align: center; }
+    .stat-num {
+      font-family: var(--font-heading);
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--primary);
     }
-
-    .settings-header h3 { font-size: 18px; font-weight: 700; }
-
-    .close-btn {
-      background: none; border: none; color: var(--text-secondary);
-      font-size: 20px; cursor: pointer; transition: color 0.3s;
+    .stat-label {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 4px;
     }
-
-    .close-btn:hover { color: var(--text-primary); }
-
-    .setting-group { margin-bottom: 25px; }
-
-    .setting-label {
-      font-size: 12px; font-weight: 600; color: var(--text-secondary);
-      text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; display: block;
+    .landing-footer {
+      padding: 30px 20px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 13px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      margin-top: 60px;
     }
-
-    .theme-options, .lang-options {
-      display: flex; gap: 10px; flex-wrap: wrap;
+    .lang-selector-landing {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      z-index: 10;
     }
-
-    .option-btn {
-      padding: 10px 20px; background: var(--bg-primary);
-      border: 1px solid var(--border); border-radius: 8px;
-      color: var(--text-secondary); cursor: pointer; font-size: 13px;
-      font-weight: 500; transition: all 0.2s;
-    }
-
-    .option-btn.active, .option-btn:hover {
-      border-color: var(--accent); color: var(--text-primary);
-      background: var(--accent);
-    }
-
-    .overlay {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.6); backdrop-filter: blur(5px);
-      z-index: 9999; opacity: 0; visibility: hidden; transition: all 0.3s;
-    }
-
-    .overlay.active { opacity: 1; visibility: visible; }
-
-    @media (max-width: 768px) {
-      .container { padding: 40px 20px; }
-      .glass-card { padding: 50px 20px; }
-      .logo { font-size: 70px; }
-      .nav-grid { grid-template-columns: 1fr; }
+    .lang-selector-landing select {
+      padding: 8px 14px;
+      background: var(--bg-glass);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--border-glass);
+      border-radius: 10px;
+      color: var(--text);
+      font-size: 13px;
+      cursor: pointer;
+      outline: none;
     }
   </style>
 </head>
 <body>
-  <div class="ambient-bg">
-    <div class="ambient-glow glow-1"></div>
-    <div class="ambient-glow glow-2"></div>
-    <div class="ambient-glow glow-3"></div>
-  </div>
-  <div class="noise"></div>
-
-  <div class="container">
-    <div class="glass-card">
-      <div class="logo">9A</div>
-      <div class="tagline" data-i18n="gallery">Galereya</div>
-
-      <div class="nav-grid">
-        <a href="menhaqimda.html" class="triangular-btn">
-          <i class="fi fi-ss-user"></i>
-          <span data-i18n="about_me">Men Haqimda</span>
-        </a>
-        <a href="oqituvchilar.html" class="triangular-btn">
-          <i class="fi fi-bs-corporate"></i>
-          <span data-i18n="teachers">O'qituvchilar</span>
-        </a>
-        <a href="rasmlar.html" class="triangular-btn">
-          <i class="fi fi-rr-book-user"></i>
-          <span data-i18n="photos">1-Sinf Rasmlari</span>
-        </a>
-        <a href="boglanish.html" class="triangular-btn">
-          <i class="fi fi-sr-envelope"></i>
-          <span data-i18n="contact">Bog'lanish</span>
-        </a>
-      </div>
-
-      <button class="settings-trigger" onclick="openSettings()">
-        <i class="fas fa-cog"></i>
-        <span data-i18n="settings">Sozlamalar</span>
-      </button>
-    </div>
+  <div class="bg-blobs">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
   </div>
 
-  <div class="overlay" id="overlay" onclick="closeSettings()"></div>
-  <div class="settings-panel" id="settingsPanel">
-    <div class="settings-header">
-      <h3 data-i18n="settings">Sozlamalar</h3>
-      <button class="close-btn" onclick="closeSettings()"><i class="fas fa-times"></i></button>
+  <div class="lang-selector-landing">
+    <select onchange="MG_setLanguage(this.value); location.reload();">
+      <option value="en">🇬🇧 English</option>
+      <option value="uz">🇺🇿 O'zbekcha</option>
+      <option value="tr">🇹🇷 Türkçe</option>
+      <option value="kk">🇰🇿 Қазақша</option>
+      <option value="ru">🇷🇺 Русский</option>
+    </select>
+  </div>
+
+  <div class="landing-hero">
+    <div class="landing-logo">🎓</div>
+    <h1 class="landing-title" data-i18n="app_name">My Galerey</h1>
+    <p class="landing-subtitle" data-i18n="landing_desc">
+      The premium social platform for school parents and classmates. Connect, share, and stay together.
+    </p>
+    <div class="landing-buttons">
+      <a href="register.html" class="btn btn-lg">
+        <i class="fas fa-user-plus"></i>
+        <span data-i18n="create_account">Create Account</span>
+      </a>
+      <a href="login.html" class="btn btn-lg btn-secondary">
+        <i class="fas fa-sign-in-alt"></i>
+        <span data-i18n="sign_in">Sign In</span>
+      </a>
     </div>
 
-    <div class="setting-group">
-      <span class="setting-label" data-i18n="theme">Mavzu (Theme)</span>
-      <div class="theme-options">
-        <button class="option-btn active" onclick="setTheme('default', this)" data-i18n="default_theme">Default</button>
-        <button class="option-btn" onclick="setTheme('red', this)" data-i18n="red_theme">Red & White</button>
-        <button class="option-btn" onclick="setTheme('orange', this)" data-i18n="orange_theme">Orange & Black</button>
+    <div class="landing-features">
+      <div class="feature-card glass">
+        <div class="feature-icon"><i class="fas fa-comments"></i></div>
+        <h3 data-i18n="real_time_chat">Real-time Chat</h3>
+        <p data-i18n="chat_desc">Voice messages, photos, videos, files and emoji in real-time</p>
+      </div>
+      <div class="feature-card glass">
+        <div class="feature-icon"><i class="fas fa-camera"></i></div>
+        <h3 data-i18n="stories_reels">Stories & Reels</h3>
+        <p data-i18n="stories_desc">Share moments with stories and short video reels</p>
+      </div>
+      <div class="feature-card glass">
+        <div class="feature-icon"><i class="fas fa-users"></i></div>
+        <h3 data-i18n="two_groups">Two Groups</h3>
+        <p data-i18n="groups_desc">Separate chat rooms for parents and classmates</p>
+      </div>
+      <div class="feature-card glass">
+        <div class="feature-icon"><i class="fas fa-palette"></i></div>
+        <h3 data-i18n="five_themes">5 Premium Themes</h3>
+        <p data-i18n="themes_desc">Customize your experience with beautiful themes</p>
+      </div>
+      <div class="feature-card glass">
+        <div class="feature-icon"><i class="fas fa-globe"></i></div>
+        <h3 data-i18n="five_languages">5 Languages</h3>
+        <p data-i18n="lang_desc">Uzbek, English, Turkish, Kazakh, and Russian</p>
+      </div>
+      <div class="feature-card glass">
+        <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
+        <h3 data-i18n="safe_secure">Safe & Secure</h3>
+        <p data-i18n="safe_desc">Private school community with role-based access</p>
       </div>
     </div>
 
-    <div class="setting-group">
-      <span class="setting-label" data-i18n="language">Til (Language)</span>
-      <div class="lang-options">
-        <button class="option-btn active" onclick="setLang('uz', this)">🇺🇿 Uzbek</button>
-        <button class="option-btn" onclick="setLang('en', this)">🇬🇧 English</button>
-        <button class="option-btn" onclick="setLang('ru', this)">🇷🇺 Rus</button>
-        <button class="option-btn" onclick="setLang('tr', this)">🇹🇷 Türk</button>
+    <div class="landing-stats">
+      <div class="stat-item">
+        <div class="stat-num">500+</div>
+        <div class="stat-label" data-i18n="students">Students</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">200+</div>
+        <div class="stat-label" data-i18n="parents_stat">Parents</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">50+</div>
+        <div class="stat-label" data-i18n="classes">Classes</div>
+      </div>
+    </div>
+
+    <div class="landing-footer">
+      <p>© 2025 My Galerey. <span data-i18n="all_rights">All rights reserved.</span></p>
+      <div style="margin-top:12px;display:flex;gap:16px;justify-content:center">
+        <a href="contact.html" style="color:var(--primary)" data-i18n="contact_us">Contact Us</a>
+        <a href="login.html" style="color:var(--primary)" data-i18n="login">Login</a>
       </div>
     </div>
   </div>
 
-  <script>
-    const translations = {
-      uz: {
-        site_title: "9A Galereya", gallery: "Galereya", about_me: "Men Haqimda", teachers: "O'qituvchilar",
-        photos: "1-Sinf Rasmlari", contact: "Bog'lanish", settings: "Sozlamalar", theme: "Mavzu (Theme)",
-        language: "Til (Language)", default_theme: "Default", red_theme: "Red & White", orange_theme: "Orange & Black"
-      },
-      en: {
-        site_title: "9A Gallery", gallery: "Gallery", about_me: "About Me", teachers: "Teachers",
-        photos: "1st Grade Photos", contact: "Contact", settings: "Settings", theme: "Theme",
-        language: "Language", default_theme: "Default", red_theme: "Red & White", orange_theme: "Orange & Black"
-      },
-      ru: {
-        site_title: "9A Галерея", gallery: "Галерея", about_me: "Обо мне", teachers: "Учителя",
-        photos: "Фото 1 класса", contact: "Контакты", settings: "Настройки", theme: "Тема",
-        language: "Язык", default_theme: "По умолчанию", red_theme: "Красный и Белый", orange_theme: "Оранжевый и Черный"
-      },
-      tr: {
-        site_title: "9A Galeri", gallery: "Galeri", about_me: "Hakkımda", teachers: "Öğretmenler",
-        photos: "1. Sınıf Fotoğrafları", contact: "İletişim", settings: "Ayarlar", theme: "Tema",
-        language: "Dil", default_theme: "Varsayılan", red_theme: "Kırmızı ve Beyaz", orange_theme: "Turuncu ve Siyah"
-      }
-    };
-
-    function openSettings() {
-      document.getElementById('settingsPanel').classList.add('active');
-      document.getElementById('overlay').classList.add('active');
-    }
-
-    function closeSettings() {
-      document.getElementById('settingsPanel').classList.remove('active');
-      document.getElementById('overlay').classList.remove('active');
-    }
-
-    function setTheme(themeName, btn) {
-      if (themeName === 'default') {
-        document.documentElement.removeAttribute('data-theme');
-      } else {
-        document.documentElement.setAttribute('data-theme', themeName);
-      }
-      localStorage.setItem('theme', themeName);
-      document.querySelectorAll('.theme-options .option-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-    }
-
-    function setLang(lang, btn) {
-      localStorage.setItem('lang', lang);
-      applyLang(lang);
-      document.querySelectorAll('.lang-options .option-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-    }
-
-    function applyLang(lang) {
-      const t = translations[lang];
-      document.querySelectorAll('[data-i18n]').forEach(el => {
-        const key = el.getAttribute('data-i18n');
-        if (t[key]) el.textContent = t[key];
-      });
-    }
-
-    window.addEventListener('DOMContentLoaded', () => {
-      const savedTheme = localStorage.getItem('theme');
-      if (savedTheme && savedTheme !== 'default') {
-        document.documentElement.setAttribute('data-theme', savedTheme);
-        const themeBtns = document.querySelectorAll('.theme-options .option-btn');
-        themeBtns.forEach(b => b.classList.remove('active'));
-        const activeBtn = document.querySelector(`.theme-options button[onclick*="${savedTheme}"]`);
-        if (activeBtn) activeBtn.classList.add('active');
-      }
-
-      const savedLang = localStorage.getItem('lang') || 'uz';
-      applyLang(savedLang);
-      const langBtns = document.querySelectorAll('.lang-options .option-btn');
-      langBtns.forEach(b => b.classList.remove('active'));
-      const activeLangBtn = document.querySelector(`.lang-options button[onclick*="${savedLang}"]`);
-      if (activeLangBtn) activeLangBtn.classList.add('active');
-    });
-  </script>
+  <script src="assets/js/i18n.js"></script>
+  <script src="assets/js/app.js"></script>
 </body>
 </html>

@@ -1,0 +1,114 @@
+/* ========================================
+   MY GALEREY — 5 Premium Themes
+   ======================================== */
+
+/* ===== 1. BLACK RED (Default) ===== */
+[data-theme="black-red"] {
+  --primary: #ff2d55;
+  --primary-dark: #e0264b;
+  --primary-light: #ff5a7a;
+  --primary-glow: rgba(255, 45, 85, 0.3);
+  --bg: #0a0a0f;
+  --bg-secondary: #12121a;
+  --gradient-primary: linear-gradient(135deg, #ff2d55, #ff5a7a);
+  --gradient-bg: linear-gradient(180deg, #0a0a0f 0%, #1a1a2e 100%);
+  --chat-bubble-self: linear-gradient(135deg, #ff2d55, #ff5a7a);
+  --chat-bubble-other: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="black-red"] .btn { border-radius: 12px; }
+[data-theme="black-red"] .card { border-radius: 16px; }
+[data-theme="black-red"] .input-field { border-radius: 12px; }
+[data-theme="black-red"] .nav-btn { border-radius: 50%; }
+[data-theme="black-red"] .post-card { border-radius: 16px; }
+[data-theme="black-red"] .msg.self .msg-bubble { border-radius: 18px 18px 4px 18px; }
+[data-theme="black-red"] .msg.other .msg-bubble { border-radius: 18px 18px 18px 4px; }
+
+/* ===== 2. BLACK GREEN ===== */
+[data-theme="black-green"] {
+  --primary: #00e676;
+  --primary-dark: #00c853;
+  --primary-light: #69f0ae;
+  --primary-glow: rgba(0, 230, 118, 0.3);
+  --bg: #050a05;
+  --bg-secondary: #0a140a;
+  --gradient-primary: linear-gradient(135deg, #00e676, #69f0ae);
+  --gradient-bg: linear-gradient(180deg, #050a05 0%, #0a1f0a 100%);
+  --chat-bubble-self: linear-gradient(135deg, #00c853, #00e676);
+  --chat-bubble-other: rgba(0, 230, 118, 0.08);
+}
+
+[data-theme="black-green"] .btn { border-radius: 50px; }
+[data-theme="black-green"] .card { border-radius: 20px; }
+[data-theme="black-green"] .input-field { border-radius: 50px; }
+[data-theme="black-green"] .nav-btn { border-radius: 14px; }
+[data-theme="black-green"] .post-card { border-radius: 20px; }
+[data-theme="black-green"] .msg.self .msg-bubble { border-radius: 22px; }
+[data-theme="black-green"] .msg.other .msg-bubble { border-radius: 22px; }
+[data-theme="black-green"] .bottom-nav-item.active::before { border-radius: 2px; }
+
+/* ===== 3. VIOLET BLACK ===== */
+[data-theme="violet-black"] {
+  --primary: #bb86fc;
+  --primary-dark: #9c5cf7;
+  --primary-light: #d4a5ff;
+  --primary-glow: rgba(187, 134, 252, 0.3);
+  --bg: #0a0612;
+  --bg-secondary: #140e24;
+  --gradient-primary: linear-gradient(135deg, #bb86fc, #9c5cf7);
+  --gradient-bg: linear-gradient(180deg, #0a0612 0%, #1a1030 100%);
+  --chat-bubble-self: linear-gradient(135deg, #bb86fc, #9c5cf7);
+  --chat-bubble-other: rgba(187, 134, 252, 0.08);
+}
+
+[data-theme="violet-black"] .btn { border-radius: 14px; }
+[data-theme="violet-black"] .card { border-radius: 18px; }
+[data-theme="violet-black"] .input-field { border-radius: 14px; }
+[data-theme="violet-black"] .nav-btn { border-radius: 12px; }
+[data-theme="violet-black"] .post-card { border-radius: 18px; }
+[data-theme="violet-black"] .msg.self .msg-bubble { border-radius: 20px 20px 20px 4px; }
+[data-theme="violet-black"] .msg.other .msg-bubble { border-radius: 20px 20px 4px 20px; }
+
+/* ===== 4. ORANGE BLACK ===== */
+[data-theme="orange-black"] {
+  --primary: #ff9100;
+  --primary-dark: #ff6d00;
+  --primary-light: #ffab40;
+  --primary-glow: rgba(255, 145, 0, 0.3);
+  --bg: #0a0705;
+  --bg-secondary: #14100a;
+  --gradient-primary: linear-gradient(135deg, #ff9100, #ffab40);
+  --gradient-bg: linear-gradient(180deg, #0a0705 0%, #1f1208 100%);
+  --chat-bubble-self: linear-gradient(135deg, #ff6d00, #ff9100);
+  --chat-bubble-other: rgba(255, 145, 0, 0.08);
+}
+
+[data-theme="orange-black"] .btn { border-radius: 4px; }
+[data-theme="orange-black"] .card { border-radius: 8px; }
+[data-theme="orange-black"] .input-field { border-radius: 4px; }
+[data-theme="orange-black"] .nav-btn { border-radius: 8px; }
+[data-theme="orange-black"] .post-card { border-radius: 8px; }
+[data-theme="orange-black"] .msg.self .msg-bubble { border-radius: 4px 18px 18px 18px; }
+[data-theme="orange-black"] .msg.other .msg-bubble { border-radius: 18px 4px 18px 18px; }
+
+/* ===== 5. OCEAN BLUE ===== */
+[data-theme="ocean-blue"] {
+  --primary: #2196f3;
+  --primary-dark: #1976d2;
+  --primary-light: #64b5f6;
+  --primary-glow: rgba(33, 150, 243, 0.3);
+  --bg: #050a14;
+  --bg-secondary: #0a1628;
+  --gradient-primary: linear-gradient(135deg, #2196f3, #64b5f6);
+  --gradient-bg: linear-gradient(180deg, #050a14 0%, #0d2137 100%);
+  --chat-bubble-self: linear-gradient(135deg, #1976d2, #2196f3);
+  --chat-bubble-other: rgba(33, 150, 243, 0.08);
+}
+
+[data-theme="ocean-blue"] .btn { border-radius: 20px 8px 20px 8px; }
+[data-theme="ocean-blue"] .card { border-radius: 20px; }
+[data-theme="ocean-blue"] .input-field { border-radius: 20px 8px 20px 8px; }
+[data-theme="ocean-blue"] .nav-btn { border-radius: 16px; }
+[data-theme="ocean-blue"] .post-card { border-radius: 20px; }
+[data-theme="ocean-blue"] .msg.self .msg-bubble { border-radius: 22px 22px 22px 4px; }
+[data-theme="ocean-blue"] .msg.other .msg-bubble { border-radius: 22px 22px 4px 22px; }

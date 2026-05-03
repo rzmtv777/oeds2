@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="black-red">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Galerey — Explore</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/themes.css">
+  <style>
+    .explore-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3px;
+    }
+    .explore-item {
+      aspect-ratio: 1;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+    }
+    .explore-item img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+    .explore-item:hover img { transform: scale(1.05); }
+    .explore-item .overlay {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      opacity: 0;
+      transition: var(--transition);
+    }
+    .explore-item:hover .overlay { opacity: 1; }
+    .explore-item .overlay span { display: flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 700; }
+    .explore-item.large { grid-column: span 2; grid-row: span 2; }
+    .explore-tags { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 8px; margin-bottom: 16px; }
+    .explore-tags::-webkit-scrollbar { display: none; }
+    .explore-tag { padding: 6px 16px; font-size: 12px; font-weight: 600; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; color: var(--text-secondary); cursor: pointer; transition: var(--transition); white-space: nowrap; }
+    .explore-tag.active { background: var(--gradient-primary); color: #fff; border-color: transparent; }
+  </style>
+</head>
+<body>
+  <div class="bg-blobs"><div class="blob blob-1"></div><div class="blob blob-2"></div></div>
+
+  <div class="top-nav">
+    <div class="nav-brand"><div class="nav-brand-icon">🎓</div><span data-i18n="app_name">My Galerey</span></div>
+    <div class="nav-actions">
+      <button class="nav-btn" onclick="location.href='search.html'"><i class="fas fa-search"></i></button>
+      <button class="nav-btn" onclick="location.href='home.html'"><i class="fas fa-home"></i></button>
+    </div>
+  </div>
+
+  <div class="main-content">
+    <div class="page-container">
+      <h1 style="font-family:var(--font-heading);font-size:24px;font-weight:700;margin-bottom:16px" data-i18n="explore">Explore</h1>
+
+      <div class="explore-tags">
+        <button class="explore-tag active" data-i18n="for_you">For You</button>
+        <button class="explore-tag">🏫 School</button>
+        <button class="explore-tag">🎨 Art</button>
+        <button class="explore-tag">🔬 Science</button>
+        <button class="explore-tag">⚽ Sports</button>
+        <button class="explore-tag">🎵 Music</button>
+        <button class="explore-tag">📚 Study</button>
+        <button class="explore-tag">🎉 Events</button>
+      </div>
+
+      <div class="explore-grid">
+        <div class="explore-item large" onclick="location.href='media.html'">
+          <img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=600&h=600&fit=crop" alt="">
+          <div class="overlay"><span><i class="fas fa-heart"></i> 2.4k</span><span><i class="fas fa-comment"></i> 89</span></div>
+        </div>
+        <div class="explore-item">
+          <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=300&h=300&fit=crop" alt="">
+          <div class="overlay"><span><i class="fas fa-heart"></i> 1.2k</span></div>
+        </div>
+        <div class="explore-item">
+          <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=300&h=300&fit=crop" alt="">
+          <div class="overlay"><span><i class="fas fa-heart"></i> 856</span></div>
+        </div>
+        <div class="explore-item">
+          <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?w=300&h=300&fit=crop" alt="">
+          <div class="overlay"><span><i class="fas fa-heart"></i> 543</span></div>
+        </div>
+        <div class="explore-item">
+          <img src="https://images.unsplash.com/photo-1571260899304-425eee4c7efc?w=300&h=300&fit=crop" alt="">
+          <div class="overlay"><span><i class="fas fa-heart"></i> 1.8k</span></div>
+        </div>
+        <div class="explore-item">
+          <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=300&h=300&fit=crop" alt="">
+          <div class="overlay"><span><i class="fas fa-heart"></i> 967</span></div>
+        </div>
+        <div class="explore-item">
+          <img src="https://images.unsplash.com/photo-1588072432836-e10032774350?w=300&h=300&fit=crop" alt="">
+          <div class="overlay"><span><i class="fas fa-heart"></i> 2.1k</span></div>
+        </div>
+        <div class="explore-item">
+          <img src="https://images.unsplash.com/photo-1529390079861-591de354faf5?w=300&h=300&fit=crop" alt="">
+          <div class="overlay"><span><i class="fas fa-heart"></i> 1.5k</span></div>
+        </div>
+        <div class="explore-item">
+          <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=300&h=300&fit=crop" alt="">
+          <div class="overlay"><span><i class="fas fa-heart"></i> 789</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom-nav">
+    <button class="bottom-nav-item" onclick="location.href='home.html'"><i class="fas fa-home"></i><span data-i18n="home">Home</span></button>
+    <button class="bottom-nav-item active" onclick="location.href='explore.html'"><i class="fas fa-compass"></i><span data-i18n="explore">Explore</span></button>
+    <button class="bottom-nav-item" onclick="location.href='reels.html'"><i class="fas fa-play-circle"></i><span data-i18n="reels">Reels</span></button>
+    <button class="bottom-nav-item" onclick="location.href='chat.html'"><i class="fas fa-paper-plane"></i><span data-i18n="chat">Chat</span></button>
+    <button class="bottom-nav-item" onclick="location.href='profile.html'"><i class="fas fa-user"></i><span data-i18n="profile">Profile</span></button>
+  </div>
+
+  <script src="assets/js/i18n.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script>
+    MG_App.requireAuth('login.html');
+    document.querySelectorAll('.explore-tag').forEach(tag => {
+      tag.addEventListener('click', () => {
+        document.querySelectorAll('.explore-tag').forEach(t => t.classList.remove('active'));
+        tag.classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>

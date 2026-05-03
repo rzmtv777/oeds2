@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="black-red">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Galerey — Home</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/themes.css">
+  <style>
+    .stories-bar {
+      display: flex;
+      gap: 16px;
+      padding: 16px;
+      overflow-x: auto;
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius);
+      margin-bottom: 20px;
+    }
+    .stories-bar::-webkit-scrollbar { display: none; }
+    .story-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+    .story-item .story-ring { width: 64px; height: 64px; }
+    .story-item .story-ring img { width: 58px; height: 58px; }
+    .story-item .add-story {
+      width: 64px; height: 64px;
+      border-radius: 50%;
+      border: 2px dashed var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      color: var(--text-muted);
+      transition: var(--transition);
+    }
+    .story-item .add-story:hover { border-color: var(--primary); color: var(--primary); }
+    .story-item span { font-size: 11px; color: var(--text-secondary); max-width: 64px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; text-align: center; }
+
+    .feed-container { max-width: var(--feed-width); margin: 0 auto; }
+
+    .post-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius);
+      margin-bottom: 20px;
+      overflow: hidden;
+      animation: fadeIn 0.5s ease;
+    }
+    .post-header {
+      display: flex;
+      align-items: center;
+      padding: 12px 16px;
+      gap: 12px;
+    }
+    .post-header .avatar { border: 2px solid var(--primary); }
+    .post-header-info { flex: 1; }
+    .post-header-info .username { font-size: 14px; font-weight: 700; }
+    .post-header-info .location { font-size: 12px; color: var(--text-muted); }
+    .post-header .more-btn { background: none; border: none; color: var(--text); font-size: 18px; cursor: pointer; padding: 4px; }
+
+    .post-image { width: 100%; aspect-ratio: 1; object-fit: cover; cursor: pointer; }
+    .post-video { width: 100%; aspect-ratio: 16/9; object-fit: cover; }
+
+    .post-actions {
+      display: flex;
+      align-items: center;
+      padding: 12px 16px;
+      gap: 16px;
+    }
+    .post-action-btn {
+      background: none;
+      border: none;
+      color: var(--text);
+      font-size: 22px;
+      cursor: pointer;
+      transition: var(--transition);
+      padding: 0;
+    }
+    .post-action-btn:hover { color: var(--primary); transform: scale(1.1); }
+    .post-action-btn.liked { color: var(--primary); animation: heartBeat 0.6s; }
+    .post-action-btn.saved { color: var(--primary); }
+    .post-actions .spacer { flex: 1; }
+
+    .post-content { padding: 0 16px 16px; }
+    .post-likes { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
+    .post-caption { font-size: 14px; line-height: 1.5; }
+    .post-caption .username { font-weight: 700; }
+    .post-time { font-size: 11px; color: var(--text-muted); margin-top: 6px; text-transform: uppercase; }
+
+    .suggested-section { margin-top: 24px; }
+    .suggested-card {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-sm);
+      margin-bottom: 8px;
+    }
+    .suggested-card .avatar { border: 2px solid var(--primary); }
+    .suggested-info { flex: 1; }
+    .suggested-info .name { font-size: 14px; font-weight: 600; }
+    .suggested-info .mutual { font-size: 12px; color: var(--text-muted); }
+    .follow-btn {
+      padding: 6px 16px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--primary);
+      background: transparent;
+      border: 1.5px solid var(--primary);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .follow-btn:hover { background: var(--primary); color: #fff; }
+
+    /* Desktop sidebar feed */
+    @media(min-width: 1024px) {
+      .feed-with-sidebar { display: flex; gap: 32px; max-width: 1000px; margin: 0 auto; }
+      .feed-main { flex: 1; max-width: 600px; }
+      .feed-sidebar { width: 320px; flex-shrink: 0; position: sticky; top: 80px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-blobs"><div class="blob blob-1"></div><div class="blob blob-2"></div></div>
+
+  <!-- Top Nav -->
+  <div class="top-nav">
+    <div class="nav-brand">
+      <div class="nav-brand-icon">🎓</div>
+      <span data-i18n="app_name">My Galerey</span>
+    </div>
+    <div class="nav-search">
+      <i class="fas fa-search"></i>
+      <input type="text" class="input-field" data-i18n-placeholder="search_users" placeholder="Search users..." onfocus="window.location.href='search.html'">
+    </div>
+    <div class="nav-actions">
+      <button class="nav-btn" onclick="location.href='home.html'" title="Home"><i class="fas fa-home"></i></button>
+      <button class="nav-btn" onclick="location.href='chat.html'" title="Chat"><i class="fas fa-paper-plane"></i><span class="badge badge-dot"></span></button>
+      <button class="nav-btn" onclick="location.href='notifications.html'" title="Notifications"><i class="fas fa-heart"></i><span class="badge">3</span></button>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <div class="page-container">
+      <div class="feed-with-sidebar">
+        <div class="feed-main">
+          <!-- Stories -->
+          <div class="stories-bar">
+            <div class="story-item" onclick="location.href='reels.html'">
+              <div class="add-story"><i class="fas fa-plus"></i></div>
+              <span data-i18n="your_story">Your Story</span>
+            </div>
+            <div class="story-item">
+              <div class="story-ring"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=120&h=120&fit=crop" class="avatar" alt=""></div>
+              <span>Sara</span>
+            </div>
+            <div class="story-item">
+              <div class="story-ring"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=120&h=120&fit=crop" class="avatar" alt=""></div>
+              <span>Ahmet</span>
+            </div>
+            <div class="story-item">
+              <div class="story-ring seen"><img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=120&h=120&fit=crop" class="avatar" alt=""></div>
+              <span>Maria</span>
+            </div>
+            <div class="story-item">
+              <div class="story-ring"><img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=120&h=120&fit=crop" class="avatar" alt=""></div>
+              <span>David</span>
+            </div>
+            <div class="story-item">
+              <div class="story-ring seen"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=120&h=120&fit=crop" class="avatar" alt=""></div>
+              <span>Lina</span>
+            </div>
+            <div class="story-item">
+              <div class="story-ring"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=120&h=120&fit=crop" class="avatar" alt=""></div>
+              <span>Ali</span>
+            </div>
+          </div>
+
+          <!-- Feed -->
+          <div class="feed-container">
+            <!-- Post 1 - Photo -->
+            <div class="post-card">
+              <div class="post-header">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop" class="avatar avatar-md" alt="">
+                <div class="post-header-info">
+                  <div class="username">sara_karimova</div>
+                  <div class="location">📍 Tashkent School #42</div>
+                </div>
+                <button class="more-btn"><i class="fas fa-ellipsis-h"></i></button>
+              </div>
+              <img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=600&h=600&fit=crop" class="post-image" alt="School" ondblclick="likePost(this)">
+              <div class="post-actions">
+                <button class="post-action-btn" onclick="toggleLike(this)"><i class="far fa-heart"></i></button>
+                <button class="post-action-btn"><i class="far fa-comment"></i></button>
+                <button class="post-action-btn"><i class="far fa-paper-plane"></i></button>
+                <div class="spacer"></div>
+                <button class="post-action-btn" onclick="toggleSave(this)"><i class="far fa-bookmark"></i></button>
+              </div>
+              <div class="post-content">
+                <div class="post-likes">128 likes</div>
+                <div class="post-caption"><span class="username">sara_karimova</span> Beautiful day at school! 🏫✨</div>
+                <div class="post-time">2 hours ago</div>
+              </div>
+            </div>
+
+            <!-- Post 2 - Video -->
+            <div class="post-card">
+              <div class="post-header">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop" class="avatar avatar-md" alt="">
+                <div class="post-header-info">
+                  <div class="username">ahmet_yilmaz</div>
+                  <div class="location">📍 Science Lab</div>
+                </div>
+                <button class="more-btn"><i class="fas fa-ellipsis-h"></i></button>
+              </div>
+              <video class="post-video" controls poster="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=600&h=340&fit=crop">
+                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+              </video>
+              <div class="post-actions">
+                <button class="post-action-btn" onclick="toggleLike(this)"><i class="far fa-heart"></i></button>
+                <button class="post-action-btn"><i class="far fa-comment"></i></button>
+                <button class="post-action-btn"><i class="far fa-paper-plane"></i></button>
+                <div class="spacer"></div>
+                <button class="post-action-btn" onclick="toggleSave(this)"><i class="far fa-bookmark"></i></button>
+              </div>
+              <div class="post-content">
+                <div class="post-likes">256 likes</div>
+                <div class="post-caption"><span class="username">ahmet_yilmaz</span> Science experiment went amazing! 🔬🎬</div>
+                <div class="post-time">5 hours ago</div>
+              </div>
+            </div>
+
+            <!-- Post 3 -->
+            <div class="post-card">
+              <div class="post-header">
+                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop" class="avatar avatar-md" alt="">
+                <div class="post-header-info">
+                  <div class="username">maria_petrova</div>
+                  <div class="location">📍 Art Classroom</div>
+                </div>
+                <button class="more-btn"><i class="fas fa-ellipsis-h"></i></button>
+              </div>
+              <img src="https://images.unsplash.com/photo-1588072432836-e10032774350?w=600&h=600&fit=crop" class="post-image" alt="Art" ondblclick="likePost(this)">
+              <div class="post-actions">
+                <button class="post-action-btn" onclick="toggleLike(this)"><i class="far fa-heart"></i></button>
+                <button class="post-action-btn"><i class="far fa-comment"></i></button>
+                <button class="post-action-btn"><i class="far fa-paper-plane"></i></button>
+                <div class="spacer"></div>
+                <button class="post-action-btn" onclick="toggleSave(this)"><i class="far fa-bookmark"></i></button>
+              </div>
+              <div class="post-content">
+                <div class="post-likes">89 likes</div>
+                <div class="post-caption"><span class="username">maria_petrova</span> My latest art project 🎨🖌️ What do you think?</div>
+                <div class="post-time">8 hours ago</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Desktop Sidebar -->
+        <div class="feed-sidebar" style="display:none">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:24px">
+            <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&h=100&fit=crop" class="avatar avatar-lg" alt="">
+            <div>
+              <div style="font-weight:700;font-size:14px" id="sidebarUsername">user</div>
+              <div style="font-size:13px;color:var(--text-muted)" id="sidebarName">User Name</div>
+            </div>
+          </div>
+
+          <div class="section-header">
+            <h2 style="font-size:14px;color:var(--text-muted)" data-i18n="suggested">Suggested for you</h2>
+            <a href="explore.html" class="see-all" style="font-size:12px" data-i18n="see_all">See All</a>
+          </div>
+
+          <div class="suggested-card">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=80&h=80&fit=crop" class="avatar avatar-md" alt="">
+            <div class="suggested-info"><div class="name">emma_wilson</div><div class="mutual">3 mutual friends</div></div>
+            <button class="follow-btn" data-i18n="follow">Follow</button>
+          </div>
+          <div class="suggested-card">
+            <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=80&h=80&fit=crop" class="avatar avatar-md" alt="">
+            <div class="suggested-info"><div class="name">james_brown</div><div class="mutual">5 mutual friends</div></div>
+            <button class="follow-btn" data-i18n="follow">Follow</button>
+          </div>
+          <div class="suggested-card">
+            <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=80&h=80&fit=crop" class="avatar avatar-md" alt="">
+            <div class="suggested-info"><div class="name">nika_lee</div><div class="mutual">2 mutual friends</div></div>
+            <button class="follow-btn" data-i18n="follow">Follow</button>
+          </div>
+
+          <div style="margin-top:32px;font-size:11px;color:var(--text-dim);line-height:1.8">
+            About · Help · Press · API · Jobs · Privacy · Terms<br>
+            © 2025 MY GALEREY
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Nav -->
+  <div class="bottom-nav">
+    <button class="bottom-nav-item active" onclick="location.href='home.html'"><i class="fas fa-home"></i><span data-i18n="home">Home</span></button>
+    <button class="bottom-nav-item" onclick="location.href='explore.html'"><i class="fas fa-compass"></i><span data-i18n="explore">Explore</span></button>
+    <button class="bottom-nav-item" onclick="location.href='reels.html'"><i class="fas fa-play-circle"></i><span data-i18n="reels">Reels</span></button>
+    <button class="bottom-nav-item" onclick="location.href='chat.html'"><i class="fas fa-paper-plane"></i><span data-i18n="chat">Chat</span></button>
+    <button class="bottom-nav-item" onclick="location.href='profile.html'"><i class="fas fa-user"></i><span data-i18n="profile">Profile</span></button>
+  </div>
+
+  <script src="assets/js/i18n.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script>
+    // Auth check
+    if (!MG_App.requireAuth('login.html')) { }
+    else {
+      const user = MG_App.currentUser;
+      if (user) {
+        const el = document.getElementById('sidebarUsername');
+        const el2 = document.getElementById('sidebarName');
+        if (el) el.textContent = '@' + user.username;
+        if (el2) el2.textContent = user.name;
+      }
+      // Show sidebar on desktop
+      if (window.innerWidth >= 1024) {
+        document.querySelector('.feed-sidebar').style.display = 'block';
+      }
+    }
+
+    function toggleLike(btn) {
+      const icon = btn.querySelector('i');
+      if (icon.classList.contains('far')) {
+        icon.className = 'fas fa-heart';
+        btn.classList.add('liked');
+      } else {
+        icon.className = 'far fa-heart';
+        btn.classList.remove('liked');
+      }
+    }
+
+    function likePost(img) {
+      const post = img.closest('.post-card');
+      const likeBtn = post.querySelector('.post-action-btn');
+      const icon = likeBtn.querySelector('i');
+      icon.className = 'fas fa-heart';
+      likeBtn.classList.add('liked');
+    }
+
+    function toggleSave(btn) {
+      const icon = btn.querySelector('i');
+      if (icon.classList.contains('far')) {
+        icon.className = 'fas fa-bookmark';
+        btn.classList.add('saved');
+        MG_showToast(MG_t('saved_success'), 'success');
+      } else {
+        icon.className = 'far fa-bookmark';
+        btn.classList.remove('saved');
+      }
+    }
+  </script>
+</body>
+</html>

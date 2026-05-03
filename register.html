@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="black-red">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Galerey — Register</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/themes.css">
+  <style>
+    .auth-page { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; position: relative; z-index: 1; }
+    .auth-container { width: 100%; max-width: 480px; padding: 36px 32px; animation: fadeInScale 0.6s ease; }
+    .auth-logo { text-align: center; margin-bottom: 28px; }
+    .auth-logo .logo-icon { width: 64px; height: 64px; background: var(--gradient-primary); border-radius: 20px; display: inline-flex; align-items: center; justify-content: center; font-size: 28px; margin-bottom: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.3); animation: float 3s ease-in-out infinite; }
+    .auth-logo h1 { font-family: var(--font-heading); font-size: 24px; font-weight: 800; background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .auth-logo p { color: var(--text-secondary); font-size: 14px; margin-top: 4px; }
+    .auth-tabs { display: flex; background: rgba(255,255,255,0.05); border-radius: var(--radius-sm); padding: 4px; margin-bottom: 24px; }
+    .auth-tab { flex: 1; padding: 10px; text-align: center; font-size: 14px; font-weight: 600; color: var(--text-secondary); border: none; background: none; cursor: pointer; border-radius: 8px; transition: var(--transition); }
+    .auth-tab.active { background: var(--gradient-primary); color: #fff; }
+    .select-group { display: flex; gap: 12px; margin-bottom: 20px; }
+    .select-option { flex: 1; padding: 14px; text-align: center; background: rgba(255,255,255,0.05); border: 2px solid rgba(255,255,255,0.1); border-radius: var(--radius-sm); cursor: pointer; transition: var(--transition); color: var(--text-secondary); font-size: 14px; font-weight: 500; }
+    .select-option i { display: block; font-size: 22px; margin-bottom: 6px; }
+    .select-option.selected { border-color: var(--primary); background: rgba(255,45,85,0.1); color: var(--primary); }
+    .avatar-upload { text-align: center; margin-bottom: 20px; }
+    .avatar-upload .avatar-preview { width: 80px; height: 80px; border-radius: 50%; border: 3px solid var(--primary); object-fit: cover; margin-bottom: 8px; }
+    .avatar-upload .upload-btn { color: var(--primary); font-size: 13px; cursor: pointer; font-weight: 600; }
+    .lang-select-auth { position: absolute; top: 20px; right: 20px; z-index: 10; }
+    .lang-select-auth select { padding: 8px 12px; background: var(--bg-glass); backdrop-filter: blur(10px); border: 1px solid var(--border-glass); border-radius: 10px; color: var(--text); font-size: 13px; cursor: pointer; outline: none; }
+  </style>
+</head>
+<body>
+  <div class="bg-blobs"><div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div></div>
+
+  <div class="lang-select-auth">
+    <select onchange="MG_setLanguage(this.value)">
+      <option value="en">🇬🇧 EN</option><option value="uz">🇺🇿 UZ</option>
+      <option value="tr">🇹🇷 TR</option><option value="kk">🇰🇿 KK</option><option value="ru">🇷🇺 RU</option>
+    </select>
+  </div>
+
+  <div class="auth-page">
+    <div class="auth-container liquid-glass">
+      <div class="auth-logo">
+        <div class="logo-icon">✨</div>
+        <h1 data-i18n="create_account">Create Account</h1>
+        <p data-i18n="register_subtitle">Join your school community</p>
+      </div>
+
+      <div class="auth-tabs">
+        <button class="auth-tab" onclick="location.href='login.html'" data-i18n="login">Login</button>
+        <button class="auth-tab active" data-i18n="register">Register</button>
+      </div>
+
+      <form id="registerForm" onsubmit="handleRegister(event)">
+        <div class="avatar-upload">
+          <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=160&h=160&fit=crop" class="avatar-preview" id="avatarPreview" alt="Avatar">
+          <div class="upload-btn" onclick="document.getElementById('avatarInput').click()" data-i18n="upload_photo">
+            <i class="fas fa-camera"></i> Upload Photo
+          </div>
+          <input type="file" id="avatarInput" accept="image/*" style="display:none" onchange="previewAvatar(this)">
+        </div>
+
+        <div style="display:flex;gap:12px">
+          <div class="input-group" style="flex:1">
+            <label data-i18n="full_name">Full Name</label>
+            <input type="text" class="input-field" id="regName" required placeholder="John" style="padding-left:16px">
+          </div>
+          <div class="input-group" style="flex:1">
+            <label data-i18n="surname">Surname</label>
+            <input type="text" class="input-field" id="regSurname" required placeholder="Doe" style="padding-left:16px">
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label data-i18n="username">Username</label>
+          <input type="text" class="input-field" id="regUsername" required placeholder="@johndoe" style="padding-left:16px">
+        </div>
+
+        <div class="input-group">
+          <label data-i18n="phone_or_email">Phone or Gmail</label>
+          <input type="text" class="input-field" id="regEmail" required placeholder="+998 90 123 45 67">
+          <i class="input-icon fas fa-envelope"></i>
+        </div>
+
+        <div class="input-group">
+          <label data-i18n="password">Password</label>
+          <input type="password" class="input-field" id="regPassword" required placeholder="••••••••" minlength="6">
+          <i class="input-icon fas fa-lock"></i>
+          <button type="button" class="password-toggle" onclick="togglePassword('regPassword', this)">
+            <i class="fas fa-eye"></i>
+          </button>
+        </div>
+
+        <label style="font-size:12px;font-weight:600;color:var(--text-secondary);text-transform:uppercase;letter-spacing:0.8px;display:block;margin-bottom:8px" data-i18n="gender">Gender</label>
+        <div class="select-group">
+          <div class="select-option" onclick="selectOption(this, 'gender', 'male')">
+            <i class="fas fa-mars"></i><span data-i18n="male">Male</span>
+          </div>
+          <div class="select-option" onclick="selectOption(this, 'gender', 'female')">
+            <i class="fas fa-venus"></i><span data-i18n="female">Female</span>
+          </div>
+        </div>
+
+        <label style="font-size:12px;font-weight:600;color:var(--text-secondary);text-transform:uppercase;letter-spacing:0.8px;display:block;margin-bottom:8px" data-i18n="role">Role</label>
+        <div class="select-group">
+          <div class="select-option" onclick="selectOption(this, 'role', 'parent')">
+            <i class="fas fa-user-tie"></i><span data-i18n="parent">Parent</span>
+          </div>
+          <div class="select-option" onclick="selectOption(this, 'role', 'classmate')">
+            <i class="fas fa-user-graduate"></i><span data-i18n="classmate">Classmate</span>
+          </div>
+        </div>
+
+        <div class="checkbox-group">
+          <input type="checkbox" id="agreeTerms" required>
+          <label for="agreeTerms" data-i18n="agree_terms">I agree to the Terms & Conditions</label>
+        </div>
+
+        <button type="submit" class="btn btn-lg btn-full">
+          <i class="fas fa-user-plus"></i>
+          <span data-i18n="create_account">Create Account</span>
+        </button>
+      </form>
+
+      <div class="auth-footer" style="text-align:center;margin-top:20px;color:var(--text-secondary);font-size:14px">
+        <span data-i18n="already_account">Already have an account?</span>
+        <a href="login.html" style="color:var(--primary);font-weight:600" data-i18n="sign_in_link">Sign In</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/js/i18n.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script>
+    let selectedGender = '', selectedRole = '';
+
+    function selectOption(el, type, value) {
+      const parent = el.parentElement;
+      parent.querySelectorAll('.select-option').forEach(o => o.classList.remove('selected'));
+      el.classList.add('selected');
+      if (type === 'gender') selectedGender = value;
+      if (type === 'role') selectedRole = value;
+    }
+
+    function previewAvatar(input) {
+      if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          document.getElementById('avatarPreview').src = e.target.result;
+        };
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+
+    function togglePassword(id, btn) {
+      const input = document.getElementById(id);
+      const icon = btn.querySelector('i');
+      if (input.type === 'password') { input.type = 'text'; icon.className = 'fas fa-eye-slash'; }
+      else { input.type = 'password'; icon.className = 'fas fa-eye'; }
+    }
+
+    function handleRegister(e) {
+      e.preventDefault();
+      if (!selectedGender || !selectedRole) {
+        MG_showToast('Please select gender and role', 'error');
+        return;
+      }
+      const name = document.getElementById('regName').value;
+      const surname = document.getElementById('regSurname').value;
+      const username = document.getElementById('regUsername').value;
+      const email = document.getElementById('regEmail').value;
+      const avatar = document.getElementById('avatarPreview').src;
+
+      const user = {
+        id: MG_generateId(),
+        name: `${name} ${surname}`,
+        username: username.replace('@', ''),
+        email: email,
+        avatar: avatar,
+        bio: '',
+        gender: selectedGender,
+        role: selectedRole,
+        posts: 0, followers: 0, following: 0
+      };
+      MG_App.saveUser(user);
+      MG_showToast(MG_t('register_success'), 'success');
+      setTimeout(() => { window.location.href = 'home.html'; }, 800);
+    }
+  </script>
+</body>
+</html>
